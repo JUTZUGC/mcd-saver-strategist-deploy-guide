@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "mcdsaver-guide": {
+      "command": "node",
+      "args": [
+        "mcp-server.mjs"
+      ]
+    }
+  }
+}

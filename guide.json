@@ -1,0 +1,115 @@
+{
+  "owner": "JUTZUGC",
+  "code": "JUTZUGC",
+  "project": {
+    "key": "mcdsaver",
+    "nameCn": "mcd-saver-strategist",
+    "repoName": "mcd-saver-strategist-deploy-guide",
+    "oneLiner": "基于麦当劳中国 MCP 的省钱点餐 Skill，用确定性算法枚举菜单、优惠券与叠加规则",
+    "officialRepo": "https://github.com/hujjun/mcd-saver-strategist",
+    "officialDocs": "https://github.com/hujjun/mcd-saver-strategist#安装",
+    "stars": "1.5k",
+    "license": "MIT",
+    "highlights": [
+      "组合优化：穷举菜单 × 券 × 叠加规则",
+      "四种目标：最省、均衡、低卡、少排队",
+      "券体检：名义面额 vs 实际节省 vs 机会成本",
+      "凑单建议：算出加购后的净变化",
+      "帕累托前沿：价格与热量的不可支配解",
+      "多人拼单：按份数计价、人均分摊",
+      "离线可跑：内置样例不需要 Token"
+    ],
+    "mcpSupport": "项目依赖麦当劳中国 MCP（mcp.mcd.cn）获取菜单、优惠券与下单；本仓库的 MCP 只提供安装步骤、Token 配置与常见问题。",
+    "webuiUrl": "",
+    "adapterPorts": "",
+    "collectedAt": "2026-10-29",
+    "verification": [
+      [
+        "README 确认 Python 3.8+、零依赖与离线 optimizer.py 用法",
+        "已核对 2026-10-29"
+      ],
+      [
+        "README 确认麦当劳 MCP Token 申请与技能目录位置",
+        "已核对 2026-10-29"
+      ],
+      [
+        "未实测离线运行与 MCP 接入（未申请 Token）",
+        "说明 2026-10-29"
+      ],
+      [
+        "MCP 冒烟：initialize / tools/list 返回 get_guide、search_guide、get_project_info",
+        "已验证 2026-10-29"
+      ],
+      [
+        "非目标宿主调用 get_guide 被拦截（HOST_NOT_ALLOWED）",
+        "已验证 2026-10-29"
+      ]
+    ],
+    "deploy": {
+      "type": "script",
+      "requires": [
+        "python"
+      ],
+      "steps": [
+        "python -c \"import sys; assert sys.version_info >= (3,8), '需要 Python 3.8+，当前 '+sys.version\"",
+        "git clone https://github.com/hujjun/mcd-saver-strategist.git",
+        "cd mcd-saver-strategist/skills/mcd-saver-strategist/scripts",
+        "python optimizer.py",
+        "echo \"离线样例已跑通：接下来配置麦当劳 MCP Token 并复制技能目录\""
+      ],
+      "stepsPs": [
+        "python -c \"import sys; assert sys.version_info >= (3,8), '需要 Python 3.8+，当前 '+sys.version\"",
+        "git clone https://github.com/hujjun/mcd-saver-strategist.git",
+        "Set-Location mcd-saver-strategist/skills/mcd-saver-strategist/scripts",
+        "python optimizer.py",
+        "Write-Host \"离线样例已跑通：接下来配置麦当劳 MCP Token 并复制技能目录\""
+      ],
+      "source": "https://github.com/hujjun/mcd-saver-strategist#安装"
+    },
+    "pitfalls": [
+      "Python 版本不够：升到 3.8+ 再跑 optimizer.py",
+      "optimizer.py 找不到：确认在 skills/mcd-saver-strategist/scripts 目录",
+      "没有 Token 也能跑：先跑离线样例，别急着配置 MCP",
+      "MCP 连不上：检查 Token 是否激活、配置里是否替换了占位符",
+      "价格和 App 不一致：以 MCP 实时返回为准，样例数据是固定的",
+      "Windows 技能目录：用 %USERPROFILE%\\.workbuddy\\skills\\",
+      "下单前没确认：先看 Top-N 方案，再让 Agent 执行下单"
+    ]
+  },
+  "gate": {
+    "allow": [
+      "dumate"
+    ],
+    "label": "百度搭子",
+    "url": "https://www.dumate.cn/",
+    "guideUrl": "https://github.com/JUTZUGC/mcd-saver-strategist-deploy-guide",
+    "howToFix": [
+      "1. 打开 https://www.dumate.cn/ ，下载并安装「百度搭子」电脑端（Windows / macOS）",
+      "2. 用账号登录",
+      "3. 在对话窗口发送：你好，帮我从 github 部署 JUTZUGC/mcd-saver-strategist-deploy-guide 到我的电脑上",
+      "4. 部署完成后，在同一对话窗口里继续使用"
+    ],
+    "hint": "请改用「百度搭子」部署后再使用；本工具没有网页版入口。",
+    "onError": "allow"
+  },
+  "keywords": [
+    "mcd-saver-strategist",
+    "麦当劳 省钱 点餐",
+    "麦门省钱精算师",
+    "麦当劳 优惠券 组合",
+    "麦当劳 MCP",
+    "点餐 组合优化",
+    "mcd-saver-strategist 安装",
+    "麦当劳 Skill",
+    "mcd saver strategist deploy guide",
+    "麦当劳 怎么点最便宜"
+  ],
+  "topics": [
+    "mcdonalds",
+    "mcp",
+    "agent-skills",
+    "python",
+    "optimization",
+    "mcd-saver-strategist"
+  ]
+}
